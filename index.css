@@ -1,0 +1,16 @@
+:root {
+  --react-blue: #61DAFB;
+  --react-dark: #20232A;
+}
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8f9fa; }
+
+.btn-react {
+  background-color: var(--react-dark);
+  border-color: var(--react-dark);
+  color: var(--react-blue);
+  font-weight: 600;
+}
+.btn-react:hover { background-color: #2d3748; border-color: #2d3748; color: var(--react-blue); }
+
+.container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
