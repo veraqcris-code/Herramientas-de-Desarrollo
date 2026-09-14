@@ -1,3 +1,4 @@
+import { colorIcono, iconoClima } from '../../models/iconoClima';
 import type { Ciudad } from '../models/ciudad.model';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 
 export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: Props) {
   return (
-    <div className="card border-0 shadow-sm" style={{ borderTop: '3px solid #61DAFB' }}>
+    <><div className="card border-0 shadow-sm" style={{ borderTop: '3px solid #61DAFB' }}>
       <div className="card-body p-4">
 
         {/* Top */}
@@ -31,7 +32,7 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
             className={`btn btn-sm ${esFavorita ? 'btn-tempus' : 'btn-outline-secondary'}`}
             onClick={onToggleFavorita}>
             <i className={`bi me-1 ${esFavorita ? 'bi-star-fill' : 'bi-star'}`}
-               style={{ color: esFavorita ? '#61DAFB' : undefined }}></i>
+              style={{ color: esFavorita ? '#61DAFB' : undefined }}></i>
             {esFavorita ? 'Quitar favorita' : 'Guardar como favorita'}
           </button>
         </div>
@@ -39,12 +40,12 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
         {/* Datos grid */}
         <div className="row row-cols-2 row-cols-md-3 g-2 mb-4">
           {[
-            { val: `${ciudad.humedad}%`,          lbl: 'Humedad',       icon: 'bi-droplet'      },
-            { val: `${ciudad.viento} km/h`,        lbl: 'Viento',        icon: 'bi-wind'         },
-            { val: `${ciudad.precipitacion} mm`,   lbl: 'Precipitación', icon: 'bi-cloud-rain'   },
-            { val: `${ciudad.presion} hPa`,        lbl: 'Presión',       icon: 'bi-speedometer2' },
-            { val: `${ciudad.visibilidad} km`,     lbl: 'Visibilidad',   icon: 'bi-eye'          },
-            { val: `${ciudad.uv}`,                 lbl: 'Índice UV',     icon: 'bi-sun'          },
+            { val: `${ciudad.humedad}%`, lbl: 'Humedad', icon: 'bi-droplet' },
+            { val: `${ciudad.viento} km/h`, lbl: 'Viento', icon: 'bi-wind' },
+            { val: `${ciudad.precipitacion} mm`, lbl: 'Precipitación', icon: 'bi-cloud-rain' },
+            { val: `${ciudad.presion} hPa`, lbl: 'Presión', icon: 'bi-speedometer2' },
+            { val: `${ciudad.visibilidad} km`, lbl: 'Visibilidad', icon: 'bi-eye' },
+            { val: `${ciudad.uv}`, lbl: 'Índice UV', icon: 'bi-sun' },
           ].map((d, i) => (
             <div key={i} className="col">
               <div className="card border-0 bg-light h-100">
@@ -82,6 +83,7 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
         </div>
 
       </div>
-    </div>
+    </div><i className={`bi ${iconoClima(ciudad.descripcion)}`}
+      style={{ fontSize: '4rem', color: colorIcono(ciudad.descripcion) }}></i></>
   );
 }
