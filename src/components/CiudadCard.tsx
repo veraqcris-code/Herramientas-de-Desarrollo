@@ -1,4 +1,6 @@
+import { colorIcono, iconoClima } from '../../models/iconoClima';
 import type { Ciudad } from '../models/ciudad.model';
+
 
 interface Props {
   ciudad:        Ciudad;
@@ -22,7 +24,9 @@ export default function CiudadCard({ ciudad, onSeleccionar }: Props) {
         <div className="fw-bold my-1" style={{ fontSize: '2.2rem', color: '#61DAFB', fontFamily: 'monospace', lineHeight: 1 }}>
           {ciudad.temperatura}°C
         </div>
-        <div className="text-muted small">{ciudad.descripcion}</div>
+        <i className={`bi ${iconoClima(ciudad.descripcion)} me-1`}
+          style={{ color: colorIcono(ciudad.descripcion), fontSize: '1.2rem' }}></i>
+            <span className="text-muted small">{ciudad.descripcion}</span>
         <div className="d-flex gap-3 mt-3 pt-3 border-top">
           <div>
             <span className="d-block fw-semibold small">{ciudad.humedad}%</span>
