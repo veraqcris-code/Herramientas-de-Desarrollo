@@ -19,10 +19,10 @@ export function iconoClima(descripcion: string, esNoche = false): string {
 
 export function colorIcono(descripcion: string): string {
   const d = descripcion.toLowerCase();
-  if (d.includes('sol') || d.includes('caluroso')) return '#FFB300';
+  if (d.includes('sol') || d.includes('caluroso'))    return '#FFB300';
   if (d.includes('lluvia') || d.includes('tormenta')) return '#4FC3F7';
-  if (d.includes('nieve'))                          return '#E1F5FE';
+  if (d.includes('nieve'))                            return '#E1F5FE';
   if (d.includes('nublado') || d.includes('neblina')) return '#90A4AE';
-  if (d.includes('parcial'))                        return '#FFD54F';
+  if (d.includes('parcial'))                          return '#FFD54F';
   return '#61DAFB';
-} 
+}
