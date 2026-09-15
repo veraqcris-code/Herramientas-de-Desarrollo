@@ -3,7 +3,29 @@
   --react-dark: #20232A;
 }
 
-body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8f9fa; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(97, 218, 251, 0.12), transparent 28rem),
+    #f8f9fa;
+  color: #20232A;
+}
+
+/* Mejora visual global: no altera la estructura ni la lógica de las vistas. */
+.card {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.6rem 1.5rem rgba(32, 35, 42, 0.10) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #61DAFB;
+  box-shadow: 0 0 0 0.2rem rgba(97, 218, 251, 0.22);
+}
 
 .btn-react {
   background-color: var(--react-dark);
