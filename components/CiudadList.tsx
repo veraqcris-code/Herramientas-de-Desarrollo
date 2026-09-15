@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCiudades } from '../hooks/useCiudades';
 import type { Ciudad } from '../models/ciudad.model';
@@ -8,8 +8,11 @@ export default function CiudadList() {
   const navigate = useNavigate();
   const [filtro, setFiltro] = useState('');
 
-  const ciudadesFiltradas = ciudades.filter(c =>
-    c.nombre.toLowerCase().includes(filtro.toLowerCase())
+  const ciudadesFiltradas = useMemo(
+    () => ciudades.filter(c =>
+      c.nombre.toLowerCase().includes(filtro.toLowerCase())
+    ),
+    [ciudades, filtro]
   );
 
   const handleEliminar = (id?: number) => {
