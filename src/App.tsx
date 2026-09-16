@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>App de Clima</h1>
+      <h1>Skyline</h1>
       
       <div className="search-container">
         <input
