@@ -23,7 +23,8 @@ export default function CiudadForm() {
   const { id }     = useParams<{ id?: string }>();
   const navigate   = useNavigate();
   const { getById, crear, actualizar, ciudades } = useCiudades();
-  const editMode   = !!id;
+  const ciudadId   = id && /^[1-9]\d*$/.test(id) ? Number(id) : undefined;
+  const editMode   = ciudadId !== undefined;
   const [mensaje, setMensaje]       = useState<{ texto: string; tipo: 'success' | 'danger' } | null>(null);
   const [condiciones, setCondiciones] = useState<string[]>([]);
 
@@ -71,8 +72,8 @@ export default function CiudadForm() {
   });
 
   useEffect(() => {
-    if (id) {
-      getById(+id).then(c => {
+    if (ciudadId !== undefined) {
+      getById(ciudadId).then(c => {
         setValue('nombre',        c.nombre);
         setValue('temperatura',   c.temperatura);
         setValue('sensacion',     c.sensacion);
@@ -86,11 +87,11 @@ export default function CiudadForm() {
         setValue('pronostico',    c.pronostico);
       });
     }
-  }, [id]);
+  }, [ciudadId]);
 
   const onSubmit = (data: FormValues) => {
-    const operacion = editMode && id
-      ? actualizar(+id, data)
+    const operacion = ciudadId !== undefined
+      ? actualizar(ciudadId, data)
       : crear(data);
   
     operacion
@@ -150,7 +151,7 @@ export default function CiudadForm() {
                       maxLength: { value: 100, message: 'Máximo 100 caracteres.' },
                       validate: val => {
                         const existe = ciudades.find(
-                          c => c.nombre.toLowerCase() === val.trim().toLowerCase() && c.id !== (id ? +id : undefined)
+                          c => c.nombre.toLowerCase() === val.trim().toLowerCase() && c.id !== ciudadId
                         );
                         return !existe || `Ya existe una ciudad llamada "${val.trim()}"`;
                       }
