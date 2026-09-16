@@ -1,42 +1,60 @@
 import type { Ciudad } from '../models/ciudad.model';
 
 interface Props {
-  ciudad:        Ciudad;
+  ciudad: Ciudad;
   onSeleccionar: (c: Ciudad) => void;
 }
 
 export default function CiudadCard({ ciudad, onSeleccionar }: Props) {
   return (
     <div
-      className="card border-0 shadow-sm h-100"
-      style={{
-        cursor: 'pointer',
-        transition: 'transform 0.15s',
-      }}
+      className="card border-0 h-100 ciudad-card"
       onClick={() => onSeleccionar(ciudad)}
-      onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-      onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+      style={{ cursor: 'pointer' }}
     >
-      <div className="card-body">
-        <div className="fw-semibold">{ciudad.nombre}</div>
-        <div className="fw-bold my-1" style={{ fontSize: '2.2rem', color: '#61DAFB', fontFamily: 'monospace', lineHeight: 1 }}>
+      <div className="card-body p-4">
+        
+        <div className="fw-semibold fs-5">
+          {ciudad.nombre}
+        </div>
+
+        <div className="temperatura-card">
           {ciudad.temperatura}°C
         </div>
-        <div className="text-muted small">{ciudad.descripcion}</div>
+
+        <div className="text-muted small">
+          {ciudad.descripcion}
+        </div>
+
         <div className="d-flex gap-3 mt-3 pt-3 border-top">
-          <div>
-            <span className="d-block fw-semibold small">{ciudad.humedad}%</span>
-            <span className="text-muted" style={{ fontSize: '0.7rem', textTransform: 'uppercase' }}>Humedad</span>
+          <div className="dato-clima">
+            <span className="d-block fw-semibold small">
+              {ciudad.humedad}%
+            </span>
+            <span className="text-muted">
+              Humedad
+            </span>
           </div>
-          <div>
-            <span className="d-block fw-semibold small">{ciudad.viento} km/h</span>
-            <span className="text-muted" style={{ fontSize: '0.7rem', textTransform: 'uppercase' }}>Viento</span>
+
+          <div className="dato-clima">
+            <span className="d-block fw-semibold small">
+              {ciudad.viento} km/h
+            </span>
+            <span className="text-muted">
+              Viento
+            </span>
           </div>
-          <div>
-            <span className="d-block fw-semibold small">{ciudad.precipitacion} mm</span>
-            <span className="text-muted" style={{ fontSize: '0.7rem', textTransform: 'uppercase' }}>Precipit.</span>
+
+          <div className="dato-clima">
+            <span className="d-block fw-semibold small">
+              {ciudad.precipitacion} mm
+            </span>
+            <span className="text-muted">
+              Precipit.
+            </span>
           </div>
         </div>
+
       </div>
     </div>
   );

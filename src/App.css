@@ -197,3 +197,33 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.ciudad-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.ciudad-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.temperatura-card {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #61DAFB;
+  font-family: monospace;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+.dato-clima {
+  flex: 1;
+}
+
+.dato-clima .text-muted {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
