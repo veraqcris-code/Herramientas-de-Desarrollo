@@ -1,6 +1,20 @@
 import { colorIcono, iconoClima } from '../../models/iconoClima';
 import type { Ciudad } from '../models/ciudad.model';
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      div: any;
+      h4: any;
+      span: any;
+      small: any;
+      button: any;
+      i: any;
+      p: any;
+    }
+  }
+}
+
 interface Props {
   ciudad: Ciudad;
   esFavorita: boolean;
