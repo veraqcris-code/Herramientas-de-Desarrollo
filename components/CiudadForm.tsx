@@ -31,8 +31,15 @@ export default function CiudadForm() {
   // Carga las condiciones válidas desde el API
   useEffect(() => {
     fetch('http://localhost:3000/api/condiciones')
-      .then(res => res.json())
-      .then(setCondiciones);
+      .then(res => {
+        if (!res.ok) throw new Error(`Error: ${res.status}`);
+        return res.json();
+      })
+      .then(setCondiciones)
+      .catch((e: unknown) => {
+        const msg = e instanceof Error ? e.message : 'Error inesperado';
+        setMensaje({ texto: `No se pudieron cargar las condiciones. ${msg}`, tipo: 'danger' });
+      });
   }, []);
 
   const pronosticoInicial = useMemo(
