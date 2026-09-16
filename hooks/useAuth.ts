@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { SESSION_KEY } from '../config/auth';
 
 const API = 'http://localhost:3000/api/auth';
-const SESSION_KEY = 'tempus_admin_usuario';
 
 export function useAuth() {
   const [usuario, setUsuario] = useState<string | null>(
