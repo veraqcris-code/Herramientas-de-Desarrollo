@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import { useCiudades } from '../hooks/useCiudades';
@@ -35,12 +35,15 @@ export default function CiudadForm() {
       .then(setCondiciones);
   }, []);
 
-  const pronosticoInicial = obtenerProximosDias().map(dia => ({
-    dia,
-    max: 0,
-    min: 0,
-    descripcion: '',
-  }));
+  const pronosticoInicial = useMemo(
+    () => obtenerProximosDias().map(dia => ({
+      dia,
+      max: 0,
+      min: 0,
+      descripcion: '',
+    })),
+    []
+  );
 
   const {
     register,
