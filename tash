@@ -1,0 +1,31 @@
+ components/CiudadList.tsx                            |    11 [32m+[m[31m-[m
+ git                                                  |     0
+ index.css                                            |   187 [32m+[m[31m-[m
+ models/iconoClima.ts                                 |    28 [32m+[m
+ node_modules/.package-lock.json                      |    24 [32m+[m
+ node_modules/@types/react/LICENSE                    |    21 [32m+[m
+ node_modules/@types/react/README.md                  |    15 [32m+[m
+ node_modules/@types/react/canary.d.ts                |    35 [32m+[m
+ node_modules/@types/react/compiler-runtime.d.ts      |     4 [32m+[m
+ node_modules/@types/react/experimental.d.ts          |   184 [32m+[m
+ node_modules/@types/react/global.d.ts                |   166 [32m+[m
+ node_modules/@types/react/index.d.ts                 |  4463 [32m+++++[m
+ node_modules/@types/react/jsx-dev-runtime.d.ts       |    33 [32m+[m
+ node_modules/@types/react/jsx-runtime.d.ts           |    24 [32m+[m
+ node_modules/@types/react/package.json               |   210 [32m+[m
+ node_modules/@types/react/ts5.0/canary.d.ts          |    35 [32m+[m
+ node_modules/@types/react/ts5.0/experimental.d.ts    |   184 [32m+[m
+ node_modules/@types/react/ts5.0/global.d.ts          |   166 [32m+[m
+ node_modules/@types/react/ts5.0/index.d.ts           |  4450 [32m+++++[m
+ node_modules/@types/react/ts5.0/jsx-dev-runtime.d.ts |    33 [32m+[m
+ node_modules/@types/react/ts5.0/jsx-runtime.d.ts     |    24 [32m+[m
+ node_modules/csstype/LICENSE                         |    19 [32m+[m
+ node_modules/csstype/README.md                       |   291 [32m+[m
+ node_modules/csstype/index.d.ts                      | 22569 [32m++++++++++++++++++++++[m
+ node_modules/csstype/index.js.flow                   |  6863 [32m+++++++[m
+ node_modules/csstype/package.json                    |    70 [32m+[m
+ package-lock.json                                    |    29 [32m+[m
+ package.json                                         |     5 [32m+[m
+ src/components/CiudadCard.tsx                        |     6 [32m+[m[31m-[m
+ src/components/DetallePanel.tsx                      |    72 [32m+[m[31m-[m
+ 30 files changed, 40187 insertions(+), 34 deletions(-)
