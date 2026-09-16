@@ -33,3 +33,23 @@ body {
   border-color: #2d3748;
   color: var(--react-blue);
 }
+
+
+.tarjeta-clima {
+
+  padding: 24px;
+
+
+  margin: 30px auto;
+
+
+  max-width: 350px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+
+.temperatura {
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
