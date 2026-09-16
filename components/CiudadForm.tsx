@@ -89,20 +89,20 @@ export default function CiudadForm() {
     }
   }, [ciudadId]);
 
-  const onSubmit = (data: FormValues) => {
-    const operacion = ciudadId !== undefined
-      ? actualizar(ciudadId, data)
-      : crear(data);
-  
-    operacion
-      .then(() => {
-        setMensaje({ texto: editMode ? 'Ciudad actualizada.' : 'Ciudad creada.', tipo: 'success' });
-        setTimeout(() => navigate('/ciudades'), 1200);
-      })
-      .catch((e: unknown) => {
-        const msg = e instanceof Error ? e.message : 'Error inesperado';
-        setMensaje({ texto: msg, tipo: 'danger' });
-      });
+  const onSubmit = async (data: FormValues) => {
+    try {
+      if (ciudadId !== undefined) {
+        await actualizar(ciudadId, data);
+      } else {
+        await crear(data);
+      }
+
+      setMensaje({ texto: editMode ? 'Ciudad actualizada.' : 'Ciudad creada.', tipo: 'success' });
+      setTimeout(() => navigate('/ciudades'), 1200);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Error inesperado';
+      setMensaje({ texto: msg, tipo: 'danger' });
+    }
   };
 
   const nombreLen = watch('nombre')?.length ?? 0;
