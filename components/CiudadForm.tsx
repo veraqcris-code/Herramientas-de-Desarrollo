@@ -45,7 +45,7 @@ export default function CiudadForm() {
   const {
     register,
     handleSubmit,
-    setValue,
+    reset,
     watch,
     control,
     formState: { errors, isSubmitting, isValid }
@@ -74,17 +74,7 @@ export default function CiudadForm() {
   useEffect(() => {
     if (ciudadId !== undefined) {
       getById(ciudadId).then(c => {
-        setValue('nombre',        c.nombre);
-        setValue('temperatura',   c.temperatura);
-        setValue('sensacion',     c.sensacion);
-        setValue('descripcion',   c.descripcion);
-        setValue('humedad',       c.humedad);
-        setValue('viento',        c.viento);
-        setValue('precipitacion', c.precipitacion);
-        setValue('presion',       c.presion);
-        setValue('visibilidad',   c.visibilidad);
-        setValue('uv',            c.uv);
-        setValue('pronostico',    c.pronostico);
+        reset(c);
       });
     }
   }, [ciudadId]);
