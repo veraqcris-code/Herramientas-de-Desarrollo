@@ -29,7 +29,7 @@ function App() {
     try {
       const API_KEY = "0fbf9d04a911e31833ac9627ecaf78f1";
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=es`);
-      
+
       if (!response.ok) {
         throw new Error('Error');
       }
@@ -46,12 +46,13 @@ function App() {
   return (
     <div className="app-container">
       <h1>Skyline</h1>
-      
+
       <div className="search-container">
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && fetchWeather()}
           placeholder="Ingresa una ciudad"
         />
         <button onClick={fetchWeather}>Buscar</button>
@@ -66,9 +67,9 @@ function App() {
       {weatherData && !loading && !error && (
         <div className="tarjeta-clima">
           <h2>{weatherData.name}</h2>
-          <img 
-            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`} 
-            alt={weatherData.weather[0].description} 
+          <img
+            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
+            alt={weatherData.weather[0].description}
           />
           <h3 className="temperatura">{Math.round(weatherData.main.temp)}°C</h3>
           <p className="descripcion">{weatherData.weather[0].description}</p>
