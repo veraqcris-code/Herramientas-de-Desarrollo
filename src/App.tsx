@@ -132,6 +132,10 @@ function App() {
           </button>
         </div>
       )}
+      <footer className="mt-4 pt-3 border-top text-center text-muted small">
+        <p className="mb-0">Datos meteorológicos proporcionados por OpenWeatherMap</p>
+        <p>Desarrollado con React + Vite</p>
+      </footer>
     </div>
   );
 }
