@@ -85,6 +85,9 @@ export default function CiudadForm() {
     if (ciudadId !== undefined) {
       getById(ciudadId).then(c => {
         reset(c);
+      }).catch((e: unknown) => {
+        const msg = e instanceof Error ? e.message : 'Error inesperado';
+        setMensaje({ texto: `No se pudo cargar la ciudad. ${msg}`, tipo: 'danger' });
       });
     }
   }, [ciudadId]);
