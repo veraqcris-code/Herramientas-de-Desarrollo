@@ -14,6 +14,7 @@ interface WeatherData {
 }
 
 function App() {
+  const [isCelsius, setIsCelsius] = useState(true);
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -74,6 +75,15 @@ function App() {
           <h3 className="temperatura">{Math.round(weatherData.main.temp)}°C</h3>
           <p className="descripcion">{weatherData.weather[0].description}</p>
           <p className="humedad">Humedad: {weatherData.main.humidity}%</p>
+
+          <h3 className="temperatura">
+            {isCelsius
+              ? `${Math.round(weatherData.main.temp)}°C`
+              : `${Math.round((weatherData.main.temp * 9) / 5 + 32)}°F`}
+          </h3>
+          <button className="unit-toggle" onClick={() => setIsCelsius(!isCelsius)}>
+            Cambiar a {isCelsius ? '°F' : '°C'}
+          </button>
         </div>
       )}
     </div>
