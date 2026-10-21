@@ -35,6 +35,13 @@ function App() {
     return 'bi-cloud-sun';
   };
 
+  const getCurrentLocationWeather = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      // Llamar a la API de OpenWeather pero usando lat y lon
+    });
+  };
+
   const fetchWeather = async () => {
     if (!city.trim()) return;
 
@@ -87,6 +94,10 @@ function App() {
       {error && !loading && (
         <p className="error-message">Ciudad no encontrada. Intenta con otra.</p>
       )}
+
+      <button onClick={getCurrentLocationWeather} className="btn btn-outline-secondary">
+        <i className="bi bi-geo-alt"></i> Usar mi ubicación
+      </button>
 
       {weatherData && !loading && !error && (
         <div className={`card p-4 shadow-sm ${getBgColor(weatherData.main.temp)}`}>
