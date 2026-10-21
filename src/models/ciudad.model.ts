@@ -1,3 +1,5 @@
+
+/** Pronóstico meteorológico de un día. */
 export interface Pronostico {
   dia: string;
   max: number;
@@ -5,6 +7,7 @@ export interface Pronostico {
   descripcion: string;
 }
 
+/** Información meteorológica de una ciudad. */
 export interface Ciudad {
   id?: number;
   nombre: string;
