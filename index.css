@@ -35,4 +35,4 @@ body {
 }
 .btn-react:hover { background-color: #2d3748; border-color: #2d3748; color: var(--react-blue); }
 
-.container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+.container { max-width: 960px; margin: 2rem auto; padding: 0 1.125rem; }
