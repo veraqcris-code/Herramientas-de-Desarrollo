@@ -1,4 +1,5 @@
 import type { Ciudad } from '../models/ciudad.model';
+import { formatearTemperatura } from '../utils/formato';
 
 interface Props {
   ciudad:          Ciudad;
@@ -19,9 +20,9 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
           </div>
           <div className="text-end">
             <div className="fw-bold" style={{ fontSize: '3rem', color: '#61DAFB', fontFamily: 'monospace', lineHeight: 1 }}>
-              {ciudad.temperatura}°C
+              {formatearTemperatura(ciudad.temperatura)}
             </div>
-            <small className="text-muted">Sensación {ciudad.sensacion}°C</small>
+            <small className="text-muted">Sensación {formatearTemperatura(ciudad.sensacion)}</small>
           </div>
         </div>
 
@@ -72,8 +73,8 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
                   <div className="text-muted" style={{ fontSize: '0.65rem', textTransform: 'uppercase', fontFamily: 'monospace' }}>
                     {d.dia}
                   </div>
-                  <div className="fw-bold small" style={{ color: '#61DAFB', fontFamily: 'monospace' }}>{d.max}°</div>
-                  <div className="text-muted small" style={{ fontFamily: 'monospace' }}>/{d.min}°</div>
+                  <div className="fw-bold small" style={{ color: '#61DAFB', fontFamily: 'monospace' }}>{formatearTemperatura(d.max)}</div>
+                  <div className="text-muted small" style={{ fontFamily: 'monospace' }}>{formatearTemperatura(d.min)}</div>
                   <div className="text-muted" style={{ fontSize: '0.65rem' }}>{d.descripcion}</div>
                 </div>
               </div>
@@ -85,3 +86,4 @@ export default function DetallePanel({ ciudad, esFavorita, onToggleFavorita }: P
     </div>
   );
 }
+import { formatearTemperatura } from '../utils/formato';

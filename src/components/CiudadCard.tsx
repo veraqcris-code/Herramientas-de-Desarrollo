@@ -1,4 +1,5 @@
 import type { Ciudad } from '../models/ciudad.model';
+import { formatearTemperatura } from '../utils/formato';
 
 interface Props {
   ciudad:        Ciudad;
@@ -20,7 +21,7 @@ export default function CiudadCard({ ciudad, onSeleccionar }: Props) {
       <div className="card-body">
         <div className="fw-semibold">{ciudad.nombre}</div>
         <div className="fw-bold my-1" style={{ fontSize: '2.2rem', color: '#61DAFB', fontFamily: 'monospace', lineHeight: 1 }}>
-          {ciudad.temperatura}°C
+          {formatearTemperatura(ciudad.temperatura)}
         </div>
         <div className="text-muted small">{ciudad.descripcion}</div>
         <div className="d-flex gap-3 mt-3 pt-3 border-top">
