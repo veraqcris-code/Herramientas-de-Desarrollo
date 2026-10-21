@@ -72,15 +72,14 @@ function App() {
             src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
             alt={weatherData.weather[0].description}
           />
-          <h3 className="temperatura">{Math.round(weatherData.main.temp)}°C</h3>
-          <p className="descripcion">{weatherData.weather[0].description}</p>
-          <p className="humedad">Humedad: {weatherData.main.humidity}%</p>
-
           <h3 className="temperatura">
             {isCelsius
               ? `${Math.round(weatherData.main.temp)}°C`
               : `${Math.round((weatherData.main.temp * 9) / 5 + 32)}°F`}
           </h3>
+          <p className="descripcion">{weatherData.weather[0].description}</p>
+          <p className="humedad">Humedad: {weatherData.main.humidity}%</p>
+         
           <button className="unit-toggle" onClick={() => setIsCelsius(!isCelsius)}>
             Cambiar a {isCelsius ? '°F' : '°C'}
           </button>
