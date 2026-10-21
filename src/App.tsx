@@ -20,6 +20,14 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const getWeatherIcon = (description: string) => {
+    if (description.includes('lluvia')) return 'bi-cloud-rain';
+    if (description.includes('nubes')) return 'bi-clouds';
+    if (description.includes('despejado') || description.includes('soleado')) return 'bi-sun';
+    if (description.includes('nieve')) return 'bi-snow';
+    return 'bi-cloud-sun';
+  };
+
   const fetchWeather = async () => {
     if (!city.trim()) return;
 
@@ -68,10 +76,12 @@ function App() {
       {weatherData && !loading && !error && (
         <div className="tarjeta-clima">
           <h2>{weatherData.name}</h2>
-          <img
-            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
-            alt={weatherData.weather[0].description}
-          />
+          <div className="my-3">
+            <i
+              className={`bi ${getWeatherIcon(weatherData.weather[0].description)}`}
+              style={{ fontSize: '4rem', color: '#007bff' }}
+            ></i>
+          </div>
           <h3 className="temperatura">
             {isCelsius
               ? `${Math.round(weatherData.main.temp)}°C`
@@ -79,7 +89,6 @@ function App() {
           </h3>
           <p className="descripcion">{weatherData.weather[0].description}</p>
           <p className="humedad">Humedad: {weatherData.main.humidity}%</p>
-         
           <button className="unit-toggle" onClick={() => setIsCelsius(!isCelsius)}>
             Cambiar a {isCelsius ? '°F' : '°C'}
           </button>
