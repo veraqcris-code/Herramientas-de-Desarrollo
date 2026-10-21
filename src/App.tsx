@@ -21,6 +21,11 @@ function App() {
   const [error, setError] = useState(false);
   const popularCities = ['Madrid', 'Ciudad de México', 'Buenos Aires', 'Bogotá', 'Lima'];
 
+  const getBgColor = (temp: number) => {
+    if (temp < 15) return 'bg-info bg-opacity-10'; // Frío
+    if (temp > 25) return 'bg-warning bg-opacity-10'; // Calor
+    return 'bg-light'; // Templado
+  };
 
   const getWeatherIcon = (description: string) => {
     if (description.includes('lluvia')) return 'bi-cloud-rain';
@@ -84,7 +89,7 @@ function App() {
       )}
 
       {weatherData && !loading && !error && (
-        <div className="tarjeta-clima">
+        <div className={`card p-4 shadow-sm ${getBgColor(weatherData.main.temp)}`}>
           <h2>{weatherData.name}</h2>
           <div className="my-3">
             <i
