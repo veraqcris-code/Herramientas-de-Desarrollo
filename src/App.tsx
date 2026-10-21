@@ -6,6 +6,10 @@ interface WeatherData {
   main: {
     temp: number;
     humidity: number;
+    feels_like: number;
+  };
+  wind: {
+    speed: number;
   };
   weather: Array<{
     description: string;
@@ -107,6 +111,14 @@ function App() {
               className={`bi ${getWeatherIcon(weatherData.weather[0].description)}`}
               style={{ fontSize: '4rem', color: '#007bff' }}
             ></i>
+          </div>
+          <div className="row mt-3 text-muted">
+            <div className="col-6">
+              <i className="bi bi-thermometer-half"></i> Sensación: {Math.round(weatherData.main.feels_like)}°C
+            </div>
+            <div className="col-6">
+              <i className="bi bi-wind"></i> Viento: {weatherData.wind.speed} m/s
+            </div>
           </div>
           <h3 className="temperatura">
             {isCelsius
