@@ -1,20 +1,8 @@
-import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header';
-import VistaClima from './components/VistaClima';
+const API_KEY =
+  localStorage.getItem("openweather_api_key") ||
+  window.prompt("Ingresa tu clave de OpenWeather") ||
+  "";
 
-function App() {
-  return (
-    <>
-      <Header />
-      <main className="container py-4">
-        <Routes>
-          <Route path="/" element={<VistaClima />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-    </>
-  );
+if (API_KEY) {
+  localStorage.setItem("openweather_api_key", API_KEY);
 }
-
-export default App;
