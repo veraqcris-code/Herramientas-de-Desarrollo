@@ -19,6 +19,8 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const popularCities = ['Madrid', 'Ciudad de México', 'Buenos Aires', 'Bogotá', 'Lima'];
+
 
   const getWeatherIcon = (description: string) => {
     if (description.includes('lluvia')) return 'bi-cloud-rain';
@@ -55,6 +57,14 @@ function App() {
   return (
     <div className="app-container">
       <h1>Skyline</h1>
+
+      <div className="city-suggestions mt-2">
+        {popularCities.map(c => (
+          <span key={c} className="badge bg-secondary me-1 cursor-pointer" onClick={() => { setCity(c); fetchWeather(); }}>
+            {c}
+          </span>
+        ))}
+      </div>
 
       <div className="search-container">
         <input
