@@ -3,6 +3,20 @@ import type { Ciudad } from '../models/ciudad.model';
 
 const API = 'http://localhost:3000/api/ciudades';
 
+async function validarRespuesta(response: Response): Promise<void> {
+  if (response.ok) return;
+
+  let mensaje: string | undefined;
+  try {
+    const body = await response.json();
+    mensaje = body.mensaje;
+  } catch {
+    // Algunas respuestas de error no incluyen un cuerpo JSON.
+  }
+
+  throw new Error(mensaje ?? `Error: ${response.status}`);
+}
+
 interface Estado {
   ciudades: Ciudad[];
   loading: boolean;
@@ -27,9 +41,7 @@ export function useCiudades() {
 
         const response = await fetch(API, { signal: abortController.signal });
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
+        await validarRespuesta(response);
 
         const data: Ciudad[] = await response.json();
         setEstado({ ciudades: data, loading: false, error: null });
@@ -48,8 +60,8 @@ export function useCiudades() {
   // Obtener ciudad por ID
   const getById = (id: number): Promise<Ciudad> =>
     fetch(`${API}/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
+      .then(async res => {
+        await validarRespuesta(res);
         return res.json();
       })
       .catch((e: unknown) => {
@@ -65,10 +77,7 @@ export function useCiudades() {
       body: JSON.stringify(d),
     })
     .then(async res => {
-      if (!res.ok) {
-        const body = await res.json();
-        throw new Error(body.mensaje ?? `Error: ${res.status}`);
-      }
+      await validarRespuesta(res);
       refrescar();
     })
     .catch((e: unknown) => {
@@ -84,10 +93,7 @@ export function useCiudades() {
       body: JSON.stringify(d),
     })
       .then(async res => {
-        if (!res.ok) {
-          const body = await res.json();
-          throw new Error(body.mensaje ?? `Error: ${res.status}`);
-        }
+        await validarRespuesta(res);
         refrescar();
       })
       .catch((e: unknown) => {
@@ -98,8 +104,8 @@ export function useCiudades() {
   // Eliminar ciudad
   const eliminar = (id: number) =>
     fetch(`${API}/${id}`, { method: 'DELETE' })
-      .then(res => {
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
+      .then(async res => {
+        await validarRespuesta(res);
         refrescar();
       })
       .catch((e: unknown) => {
